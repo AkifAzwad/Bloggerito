@@ -1,0 +1,36 @@
+<div class="">
+    
+    <div class="">
+        <div class="col-md-12">
+            <div class="list-group">
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                    <h5 class="mb-1">@{{ post.user.username }}</h5>
+                    <p class="mb-1">{{ post.message_html|safe }}</p>
+                    
+                    
+                    <div class="d-flex w-40 justify-content-between">
+                        {% if user.is_authenticated and post.user == user and not hide_delete %}
+                        <small class="text-muted">
+                            <span onclick="window.location='{% url 'posts:delete' pk=post.pk %}'" class="text-danger icon-label btn btn-warning">
+                                Delete
+                            </span>
+                        </small>
+                        {% else %}
+                        <span></span>
+                        {% endif %}
+                        <small class="text-muted">
+                            <span onclick="window.location='{% url 'posts:single' username=post.user.username pk=post.pk %}'" class="badge badge-secondary">
+                                {{ post.created_at }}
+                            </span>
+                        </small>
+                        
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+</div>
